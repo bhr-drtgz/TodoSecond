@@ -1,3 +1,10 @@
 {
-  "todos": []
+  "todos": [
+    {
+      "id": "1671434820720",
+      "title": "Todo 2",
+      "date": "2022-12-19T07:27:00.720Z",
+      "completed": false
+    }
+  ]
 }

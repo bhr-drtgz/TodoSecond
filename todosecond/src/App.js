@@ -6,6 +6,9 @@ function App() {
   const [title, setTitle] = useState(" ");
   const [result, setResult] = useState(false);
   const [resultMessage, setResultMessage] = useState("");
+  const [duzenlemeVarMı, setDuzenlemeVarMı] = useState("")
+  const [duzenlenecekTodo, setDuzenlenecekTodo] = useState(null);
+  const [duzenlenecekTitle, setDuzenlenecekTitle] = useState("")
 
   const todoSil = (id) => {
     axios.delete(`http://localhost:3004/todos/${id}`)
@@ -18,6 +21,22 @@ function App() {
         setResultMessage("Silme İşlemi Başarısız")
       })
 
+  }
+  const changeTodosComledet = (todo) => {
+    console.log(todo)
+    const updatedTodo = {
+      ...todo,
+      completed: !todo.completed
+    }
+    axios.put(`http://localhost:3004/todos/${todo.id}`, updatedTodo)
+      .then((response) => {
+        setResult(true)
+        setResultMessage("Güncelleme İşlemi Başarılı")
+      })
+      .catch((error) => {
+        setResult(true)
+        setResultMessage("Güncelleme İşlemi Başarısız")
+      })
   }
 
   useEffect(() => {
@@ -54,6 +73,28 @@ function App() {
       })
   }
 
+  const todoGuncelleFormuDenetle = (event) => {
+    event.preventDefault()
+    if (duzenlenecekTitle === "") {
+      alert("Title Boş Bırakılamz")
+      return
+    }
+    const updatedTodo = {
+      ...duzenlenecekTodo,
+      title:duzenlenecekTitle
+    }
+    axios.put(`http://localhost:3004/todos/${updatedTodo.id}`,updatedTodo)
+    .then((response)=>{
+      setResult(true)
+      setResultMessage("Güncelleme Başarılı")
+      setDuzenlemeVarMı(false)
+     })
+     .catch((error)=>{
+      setResult(true)
+      setResultMessage("Güncelleme Başarısız")
+     })
+   }
+
   if (todolar === null) {
     return null
   }
@@ -73,7 +114,7 @@ function App() {
           justifyContent: "center",
           zIndex: 1
         }}>
-          <div class="alert alert-info" role="alert">
+          <div className="alert alert-info" role="alert">
             <p> {resultMessage} </p>
             <div className="d-flex justify-content-center  ">
               <button onClick={() => setResult(false)} className="btn btn-sm btn-outline-dark">KAPAT</button>
@@ -93,20 +134,45 @@ function App() {
           </div>
         </form>
       </div>
+      {duzenlemeVarMı === true && (
+        <div className="row my-5">
+          <form onSubmit={todoGuncelleFormuDenetle}>
+            <div className="input-group mb-3">
+              <input type="text"
+                className="form-control"
+                placeholder="Yapılacak İşler..."
+                value={duzenlenecekTitle}
+                onChange={(event) => setDuzenlenecekTitle(event.target.value)}
+              />
+              <button onAuxClick={() => setDuzenlemeVarMı(false)} className="btn btn-lg btn-danger" type="submit">VAZGEÇ</button>
+              <button className="btn btn-lg btn-primary" type="submit">GÜNCELLE</button>
+            </div>
+          </form>
+        </div>
+      )}
       {
         todolar.map((todo) => (
           <div key={todo.id} className="alert alert-dark d-flex justify-content-between align-items-center" role="alert">
             <div>
-              <h1> {todo.title} </h1>
+              <h1 style={{
+                textDecoration:
+                  todo.completed === true ? "line-through" : "none",
+                color: todo.completed === true ? "#0f0" : "black"
+              }} > {todo.title} </h1>
               <p>{new Date(todo.date).toLocaleString()}</p>
             </div>
             <div>
               <div className="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-lg btn-warning">DÜZENLE</button>
+                <button onClick={() => {
+                  setDuzenlemeVarMı(true)
+                  setDuzenlenecekTodo(todo)
+                  setDuzenlenecekTitle(todo.title)
+
+                }} type="button" class="btn btn-lg btn-warning">DÜZENLE</button>
                 <button onClick={() => todoSil(todo.id)}
                   type="button" className="btn btn-lg btn-danger">SİL</button>
-                <button type="button" className="btn btn-lg btn-primary">
-                  {todo.completed === true ? "Yapılmadı" : "Yapıldı"}
+                <button onClick={() => changeTodosComledet(todo)} type="button" className="btn btn-lg btn-primary">
+                  {todo.completed === false ? "Yapılmadı" : "Yapıldı"}
                 </button>
               </div>
             </div>

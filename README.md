@@ -1,10 +1,6 @@
  
-   <h1>TODO LIST</h1>
+<h1>TODO LIST</h1>
 
-Proje Odaklı Çalışmalarımıza Devam Ediyoruz.
+<H2> Crud Yöntemi İle Hazırlanmıştır </H2>    
 
-              BU YUGULAMA 
-           GELİŞTİRİLMEYE DEVAN 
-                EDİYOR.
-
-   ![](todosecond.gif)
+![](todoSecond.gif)

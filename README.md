@@ -1,11 +1,8 @@
  
  
- <h2>CRUD YÖNTEMİ İLE TAMAMLANMIŞTIR </h2>
+<h1> CRUD Yöntemi İle Hazırlanmıştır <h1>
 
- Yaptıgımız proje odaklı çalışmalarla
- pratikligimizi arttırıyoruz.
+<h3>Proje Odaklı Çalışmalarımız Devam Ediyor...<h3>
 
- <h3>Fikir Edinmeniz İçin Ekran Gifi Bırakıyorum</h3>
-
- ![](todoSecond.gif)
+![](todoSecond.gif)
 

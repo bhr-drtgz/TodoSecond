@@ -1,8 +1,11 @@
  
-<h1>TODO LIST</h1>
+ 
+ <h2>CRUD YÖNTEMİ İLE TAMAMLANMIŞTIR </h2>
 
+ Yaptıgımız proje odaklı çalışmalarla
+ pratikligimizi arttırıyoruz.
 
-<H2> Crud Yöntemi İle Hazırlanmıştır </H2> 
+ <h3>Fikir Edinmeniz İçin Ekran Gifi Bırakıyorum</h3>
 
+ ![](todoSecond.gif)
 
-  ![](todoSecond.gif)

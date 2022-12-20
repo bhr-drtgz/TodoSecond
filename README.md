@@ -1,6 +1,5 @@
-  <h1> CRUD Yöntemi İle Hazırlanmıştır <h1>
+# Crud ile Todo Uygulamamız
 
- <h3>Proje Odaklı Çalışmalarımız Devam Ediyor...<h3>
- 
+  <h2>EKRAN GİFİ</h2>
+
  ![](todoSecond.gif)
-
